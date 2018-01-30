@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9306A0D9-47E8-4DB3-A071-88EE8952F6E5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Cookbook.BLL</RootNamespace>
+    <AssemblyName>Cookbook.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Core.3.1.1\lib\net46\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Interfaces.3.1.1\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Linq.3.1.1\lib\net46\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=3.0.3000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.PlatformServices.3.1.1\lib\net46\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reactive.Windows.Threading.3.1.1\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataTransferObjects\CookingStepDTO.cs" />
+    <Compile Include="DataTransferObjects\CreateRecipeDTOs\CookingStepDTO.cs" />
+    <Compile Include="DataTransferObjects\CreateRecipeDTOs\CreateRecipeDTO.cs" />
+    <Compile Include="DataTransferObjects\CreateRecipeDTOs\IngredientDTO.cs" />
+    <Compile Include="DataTransferObjects\CreateRecipeDTOs\IngredientsGroupDTO.cs" />
+    <Compile Include="DataTransferObjects\CreateRecipeDTOs\MapperConfiguration.cs" />
+    <Compile Include="DataTransferObjects\CreateRecipeDTOs\MediaDTO.cs" />
+    <Compile Include="DataTransferObjects\CreateRecipeDTOs\NutritionValueDTO.cs" />
+    <Compile Include="DataTransferObjects\IngredientDTO.cs" />
+    <Compile Include="DataTransferObjects\IngredientsGroupDTO.cs" />
+    <Compile Include="DataTransferObjects\MeasuringUnitDTO.cs" />
+    <Compile Include="DataTransferObjects\MediaDTO.cs" />
+    <Compile Include="DataTransferObjects\NutritionValueDTO.cs" />
+    <Compile Include="DataTransferObjects\RecipeInfoDTO.cs" />
+    <Compile Include="DataTransferObjects\RecipeShortInfoDTO.cs" />
+    <Compile Include="MapperConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Implementations\MeasuringUnitsService.cs" />
+    <Compile Include="Services\Interfaces\IMeasuringUnitsServide.cs" />
+    <Compile Include="Services\Interfaces\INutritionService.cs" />
+    <Compile Include="Services\Implementations\RecipesService.cs" />
+    <Compile Include="Services\Interfaces\IRecipesService.cs" />
+    <Compile Include="Services\Implementations\NutritionService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cookbook.Common\Cookbook.Common.csproj">
+      <Project>{30376774-2012-446C-91BD-28A09333B479}</Project>
+      <Name>Cookbook.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cookbook.DAL\Cookbook.DAL.csproj">
+      <Project>{D02F40B7-EFEB-4F42-92C5-033E30E39298}</Project>
+      <Name>Cookbook.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cookbook.Mapper\Cookbook.Mapper.csproj">
+      <Project>{D9D17089-F64C-4C59-973E-73E83D1859C4}</Project>
+      <Name>Cookbook.Mapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

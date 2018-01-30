@@ -1,0 +1,17 @@
+<div class="recipes-container">
+    <div class="recipe" *ngFor="let recipe of recipes" routerLink="/recipe/{{recipe.Id}}" routerLinkActive="active">
+        <img class="image" src="http://knowledgeoverflow.com/wp-content/uploads/2013/03/food_photography_burger_by_masterdev777-d3h1ryk.jpg">
+        <div class="title-container">
+          <div class="title">{{ recipe.Title }}</div>
+          <div class="time">{{ recipe.CreationDate | date:"yyyy-MM-dd HH:mm"}}</div>
+        </div>
+    </div>
+    <div class="recipe" (click)="createRecipe()">
+      <div class="image">
+        <i class="ion-plus-round"></i>
+      </div>
+      <div class="title-container">
+        <div class="title">Create new recipe</div>
+      </div>
+  </div>
+</div>

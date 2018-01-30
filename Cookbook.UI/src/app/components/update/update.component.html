@@ -1,0 +1,74 @@
+<div class="save" (click)="save()">
+    <button class="btn">Save</button>
+</div>
+<div class="recipe-container" *ngIf="recipe !== undefined">
+    <div class="recipe-header">
+      <input type="text" class="recipe-name" [(ngModel)]="recipe.Name" />
+      <input type="text" class="recipe-description" [(ngModel)]="recipe.Description" />
+      <div class="recipe-times">
+        <div><span>Preparation Time: </span><input class="time" type="number" [(ngModel)]="recipe.PreparationTime"/><span> minutes</span></div>
+        <div><span>Cook Time: </span><input class="time" type="number" [(ngModel)]="recipe.CookTime"/><span> minutes</span></div>
+      </div>
+    </div>
+    <div class="info-container">
+      <div class="ingredients">
+        <input type="text" class="new-group" (keyup)="addGroup($event)" [(ngModel)]="newGroup.Name" placeholder="New Ingredients Group"/>
+        <div *ngFor="let group of recipe.IngredientsGroups">
+          <p class="group-name">
+            <i class="ion-ios-close-empty" *ngIf="group.Name !== ''" (click)="deleteIngredientGroup(group.Name)"></i>
+            <span>{{ group.Name }} {{ group.Name !== '' ? ':' : '' }}</span>
+          </p>
+          <ng-container *ngIf="group.Ingredients.length !== 0">
+            <div *ngFor="let ingredient of group.Ingredients" class="ingredient">
+              <div class="measuring">{{ ingredient.MeasuringUnitValue }} {{ ingredient.MeasuringUnit }}</div>
+              <div class="value">
+                {{ ingredient.Name }}
+                <i class="ion-ios-close-empty" (click)="deleteIngredient(group.Name, ingredient.Name)"></i>
+              </div>
+            </div>
+          </ng-container>
+          <div class="ingredient new-ingredient">
+            <input type="number" class="number" min="0.1" step="0.05" (keyup)="addIngredient($event, group.Name)" [(ngModel)]="newIngredients[group.Name].MeasuringUnitValue">
+            <select class="measuring" (keyup)="addIngredient($event, group.Name)" [(ngModel)]="newIngredients[group.Name].MeasuringUnit">
+              <option *ngFor="let measuring of ingredientsMeasuringUnits">{{ measuring.Name }}</option>
+            </select>
+            <input class="value" type="text" (keyup)="addIngredient($event, group.Name)" [(ngModel)]="newIngredients[group.Name].Name" placeholder="ingredient"/>
+          </div>
+        </div>
+      </div>
+      <div class="steps">
+        <div *ngFor="let step of recipe.CookingSteps" class="step">
+          <div class="number">
+            <span>{{ step.Number }}</span>
+            <i class="ion-ios-close-empty" (click)="deleteStep(step.Number)"></i>
+          </div>
+          <div>{{ step.Body }}</div>
+        </div>
+        <div class="step new-step">
+            <div class="number">
+                <input type="text" [(ngModel)]="newStep.Number" (keyup)="addNewStep($event)" />
+            </div>
+            <textarea class="step-body" [(ngModel)]="newStep.Body" (keyup)="addNewStep($event)"></textarea>
+        </div>
+      </div>
+      <div class="tip">Tip: <input type="text" class="tip" [(ngModel)]="recipe.Tip" /></div>
+      <div class="yield"></div>
+      <div class="nutritions">
+        <div class="nutritions-header">each serving provides:</div>
+        <div class="nutritions-container">
+          <div *ngFor="let nutrition of recipe.NutritionValues" class="nutrition">
+            <div class="value">{{ nutrition.Name }}</div>
+            <div class="measuring">{{ nutrition.MeasuringUnitValue }} {{ nutrition.MeasuringUnit }}</div>
+            <i class="ion-ios-close-empty" (click)="deleteNutrition(nutrition.Id)"></i>
+          </div>
+          <div class="nutrition new-nutrition">
+            <input class="value" type="text" [(ngModel)]="newNutrition.Name" placeholder="nutrition" (keyup)="addNewNutrition($event)"/>
+            <input class="number" type="number" [(ngModel)]="newNutrition.MeasuringUnitValue" min="1" (keyup)="addNewNutrition($event)"/>
+            <select class="measuring" [(ngModel)]="newNutrition.MeasuringUnit" (keyup)="addNewNutrition($event)">
+              <option *ngFor="let measuring of nutritionMeasuringUnits">{{ measuring.Name }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

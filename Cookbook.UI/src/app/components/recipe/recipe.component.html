@@ -1,0 +1,47 @@
+<div *ngIf="!recipe.IsHistoryItem" class="history">
+  <button class="btn" routerLink="/history/{{recipe.Id}}">View History</button>
+  <button class="btn" (click)="deleteRecipe()">Delete Recipe</button>
+</div>
+<div class="recipe-container">
+  <div class="recipe-header">
+    <div class="recipe-name">
+      {{ recipe.Name }}
+      <i class="ion-edit" *ngIf="!recipe.IsHistoryItem" routerLink="/update/{{recipe.Id}}" routerLinkActive="active"></i>
+    </div>
+    <div class="recipe-description">{{ recipe.Description }}</div>
+    <div class="recipe-times">
+      <div>Preparation Time: {{ recipe.PreparationTime }} minutes</div>
+      <div>Cook Time: {{ recipe.CookTime }} minutes</div>
+    </div>
+  </div>
+  <div class="info-container">
+    <div class="ingredients">
+      <div *ngFor="let group of recipe.IngredientsGroups">
+        <p class="group-name"> {{ group.Name }} {{ group.Name !== '' ? ':' : '' }}</p>
+        <div *ngFor="let ingredient of group.Ingredients" class="ingredient">
+          <div class="measuring">{{ ingredient.MeasuringUnitValue }} {{ ingredient.MeasuringUnit }}</div>
+          <div class="value">{{ ingredient.Name }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="steps">
+      <div *ngFor="let step of recipe.CookingSteps" class="step">
+        <div class="number">
+          <span>{{ step.Number }}</span>
+        </div>
+        <div>{{ step.Body }}</div>
+      </div>
+    </div>
+    <div class="tip">Tip: {{ recipe.Tip }}</div>
+    <div class="yield"></div>
+    <div class="nutritions">
+      <div class="nutritions-header">each serving provides:</div>
+      <div class="nutritions-container">
+        <div *ngFor="let nutrition of recipe.NutritionValues" class="nutrition">
+          <div class="value">{{ nutrition.Name }}</div>
+          <div class="measuring">{{ nutrition.MeasuringUnitValue }} {{ nutrition.MeasuringUnit }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

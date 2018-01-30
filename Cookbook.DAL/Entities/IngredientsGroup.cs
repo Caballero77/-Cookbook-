@@ -2,14 +2,32 @@
 {
     using System.Collections.Generic;
 
-    public class IngredientsGroup: BaseEntity
+    using Newtonsoft.Json;
+
+    /// <summary>
+    ///     The entity of ingredients group.
+    /// </summary>
+    public class IngredientsGroup : BaseEntity
     {
+        /// <summary>
+        ///     Gets or sets the ingredients.
+        /// </summary>
+        public virtual ICollection<Ingredient> Ingredients { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the name.
+        /// </summary>
         public string Name { get; set; }
 
-        public int RecipeId { get; set; }
-
+        /// <summary>
+        ///     Gets or sets the recipe.
+        /// </summary>
+        [JsonIgnore]
         public virtual Recipe Recipe { get; set; }
 
-        public virtual ICollection<Ingredient> Ingredients { get; set; }
+        /// <summary>
+        ///     Gets or sets the recipe id.
+        /// </summary>
+        public int RecipeId { get; set; }
     }
 }

@@ -36,6 +36,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -51,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CookbookDb.cs" />
     <Compile Include="CookbookDbInitializer.cs" />
+    <Compile Include="Enums\EMeasuringUnitType.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\CookingStep.cs" />
     <Compile Include="Entities\Ingredient.cs" />
@@ -63,10 +67,18 @@
     <Compile Include="Entities\Recipe.cs" />
     <Compile Include="Entities\RecipeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Implementations\Repository.cs" />
+    <Compile Include="Repositories\Interfaces\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cookbook.Common\Cookbook.Common.csproj">
+      <Project>{30376774-2012-446C-91BD-28A09333B479}</Project>
+      <Name>Cookbook.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,9 +1,6 @@
 namespace Cookbook.DAL
 {
-    using System;
     using System.Data.Entity;
-    using System.Data.SqlClient;
-    using System.Linq;
 
     using Cookbook.DAL.Entities;
 
@@ -33,6 +30,8 @@ namespace Cookbook.DAL
 
         public virtual DbSet<Media> Medias { get; set; }
 
+        public virtual DbSet<RecipeInfo> RecipeInfos { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -41,60 +40,58 @@ namespace Cookbook.DAL
                 .HasRequired(e => e.IngredientsGroup)
                 .WithMany(e => e.Ingredients)
                 .HasForeignKey(e => e.IngredientsGroupId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Ingredient>()
                 .HasRequired(e => e.MeasuringUnit)
                 .WithMany(e => e.Ingredients)
                 .HasForeignKey(e => e.MeasuringUnitId)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CookingStep>()
-                .HasOptional(e => e.NextStep)
-                .WithOptionalPrincipal(e => e.PreviousStep)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<MeasuringUnit>()
                 .HasRequired(e => e.MeasuringUnitType)
                 .WithMany(e => e.MeasuringUnits)
                 .HasForeignKey(e => e.MeasuringUnitTypeId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<IngredientsGroup>()
                 .HasRequired(e => e.Recipe)
                 .WithMany(e => e.IngredientsGroups)
                 .HasForeignKey(e => e.RecipeId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Media>()
                 .HasRequired(e => e.Recipe)
                 .WithMany(e => e.Medias)
                 .HasForeignKey(e => e.RecipeId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<Media>()
                 .HasRequired(e => e.MediaType)
                 .WithMany(e => e.Medias)
                 .HasForeignKey(e => e.MediaTypeId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<NutritionValue>()
                 .HasRequired(e => e.MeasuringUnit)
                 .WithMany(e => e.NutritionValues)
                 .HasForeignKey(e => e.MeasuringUnitId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<NutritionValue>()
                 .HasRequired(e => e.Recipe)
                 .WithMany(e => e.NutritionValues)
                 .HasForeignKey(e => e.RecipeId)
-                .WillCascadeOnDelete(false);
+                .WillCascadeOnDelete(true);
 
             modelBuilder.Entity<RecipeInfo>()
                 .HasRequired(e => e.Recipe)
                 .WithRequiredPrincipal(e => e.RecipeInfo)
-                .Map(e => e.MapKey("RecipeId"))
-                .WillCascadeOnDelete(false);
+                .Map(e => e.MapKey("RecipeInfoId"))
+                .WillCascadeOnDelete(true);
+
+            modelBuilder.Entity<Recipe>()
+                .HasOptional(e => e.PreviousVersion);
         }
     }
 }
